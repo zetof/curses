@@ -1,28 +1,29 @@
-import time
+import curses
+from time import sleep
 from screen import Screen
-from path import Path
-
-path = []
-path.append([])
-path[0].append('-----')
-path[0].append('     ')
-path[0].append('     ')
-path[0].append('     ')
-path[0].append('-----')
-path.append([])
-path[1].append('|         |')
-path[1].append('|         |')
-path[1].append('|         |')
-
-horizontal = Path(path[0])
-vertical = Path(path[1])
+from viewport import Viewport
 
 screen = Screen()
-screen.initColor(1, 1000, 1000, 0)
-screen.initColor(2, 0, 200, 100)
-screen.initPair(1, 1, 2)
-horizontal.printPath(screen, 10, 10)
-vertical.printPath(screen, 20, 20)
-screen.refresh()
-time.sleep(2)
+viewport = Viewport(screen, 0, 1)
 
+screen.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK)
+screen.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
+
+viewport.go_straight()
+screen.refresh()
+sleep(1)
+viewport.go_stop()
+screen.refresh()
+sleep(1)
+viewport.go_left()
+screen.refresh()
+sleep(1)
+viewport.go_right()
+screen.refresh()
+sleep(1)
+viewport.go_t()
+screen.refresh()
+sleep(1)
+viewport.go_x()
+screen.refresh()
+sleep(5)
